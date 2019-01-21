@@ -2,9 +2,9 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "lib": ["ES2017", "dom"],
-    "outDir": "dist",
+    "noEmit": true,
     "resolveJsonModule": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "strict": true
   },
   "files": ["src/index.ts"]
