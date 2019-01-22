@@ -1,1 +1,5 @@
-console.log('test')
+import testImport from './testImport'
+
+console.log('test index')
+
+testImport()
