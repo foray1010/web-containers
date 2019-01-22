@@ -4,8 +4,8 @@ import testImport from './testImport'
 testImport()
 
 const app = new App({
-	target: document.getElementById('root'),
-	data: {
+  target: document.getElementById('root'),
+  data: {
     name: 'world'
   }
 })
