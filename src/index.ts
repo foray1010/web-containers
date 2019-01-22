@@ -1,4 +1,4 @@
-import App from './App.html'
+import App from './components/App.html'
 import testImport from './testImport'
 
 testImport()

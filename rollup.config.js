@@ -11,13 +11,17 @@ export default {
   },
   plugins: [
     babel(),
+    svelte({
+      css: (css) => {
+        css.write('dist/bundle.css')
+      }
+    }),
     html({
       template: 'src/index.html',
       filename: 'index.html'
     }),
     resolve({
       extensions: ['.ts', '.mjs', '.js', '.json']
-    }),
-    svelte()
+    })
   ]
 }

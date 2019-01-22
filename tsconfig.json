@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "esModuleInterop": true,
-    "lib": ["ES2017", "dom"],
+    "lib": ["es2017", "dom"],
     "noEmit": true,
     "resolveJsonModule": true,
     "sourceMap": false,
