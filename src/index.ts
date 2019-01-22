@@ -1,5 +1,15 @@
+import App from './App.html'
 import testImport from './testImport'
 
-console.log('test index')
-
 testImport()
+
+const app = new App({
+	target: document.getElementById('root'),
+	data: {
+    name: 'world'
+  }
+})
+
+app.set({
+  name: 'everybody'
+})
