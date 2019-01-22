@@ -1,0 +1,8 @@
+'*.{html,json,md,yaml,yml}':
+  - 'prettier-eslint --write'
+  - 'git add'
+'*.{js,ts}':
+  - 'import-sort --write'
+  - 'prettier-eslint --write'
+  - 'eslint --fix'
+  - 'git add'

@@ -1,0 +1,6 @@
+.js:
+  parser: 'import-sort-parser-babylon'
+  style: 'import-sort-style-module'
+.ts:
+  parser: 'import-sort-parser-typescript'
+  style: 'import-sort-style-module'
