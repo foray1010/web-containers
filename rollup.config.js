@@ -10,7 +10,9 @@ export default {
     format: 'cjs'
   },
   plugins: [
-    babel(),
+    babel({
+      extensions: ['.ts', '.mjs', '.js']
+    }),
     html({
       template: 'src/index.html',
       filename: 'index.html'
