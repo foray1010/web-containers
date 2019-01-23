@@ -6,7 +6,7 @@ import svelte from 'rollup-plugin-svelte'
 export default {
   input: 'src/index.ts',
   output: {
-    file: 'dist/index.js',
+    file: 'dist/bundle.js',
     format: 'cjs'
   },
   plugins: [
@@ -18,6 +18,10 @@ export default {
     resolve({
       extensions: ['.ts', '.mjs', '.js', '.json']
     }),
-    svelte()
+    svelte({
+      css: (css) => {
+        css.write('dist/bundle.css')
+      }
+    })
   ]
 }
