@@ -1,3 +1,5 @@
+import postcss from 'postcss'
+import postcssPresetEnv from 'postcss-preset-env'
 import babel from 'rollup-plugin-babel'
 import html from 'rollup-plugin-fill-html'
 import resolve from 'rollup-plugin-node-resolve'
@@ -23,6 +25,15 @@ export default {
     svelte({
       css: (css) => {
         css.write('dist/bundle.css')
+      },
+      preprocess: {
+        style: async ({content}) => {
+          const result = await postcss([postcssPresetEnv()]).process(content)
+          return {
+            code: result.css,
+            map: result.map
+          }
+        }
       }
     })
   ]

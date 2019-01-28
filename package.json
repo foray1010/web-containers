@@ -27,6 +27,8 @@
     "import-sort-parser-typescript": "^5.0.0",
     "import-sort-style-module": "^5.0.0",
     "lint-staged": "^8.1.0",
+    "postcss": "^7.0.14",
+    "postcss-preset-env": "^6.5.0",
     "prettier-eslint-cli": "^4.7.1",
     "rollup": "^1.1.2",
     "rollup-plugin-babel": "^4.3.2",
