@@ -7,6 +7,7 @@ import resolve from 'rollup-plugin-node-resolve'
 import svelte from 'rollup-plugin-svelte'
 
 import svelteBabelPreprocessor from './svelte.babel.preprocessor'
+import svelteTypescriptPreprocessor from './svelte.typescript.preprocessor'
 
 export default {
   input: 'src/index.ts',
