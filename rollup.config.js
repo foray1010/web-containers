@@ -5,6 +5,8 @@ import html from 'rollup-plugin-fill-html'
 import resolve from 'rollup-plugin-node-resolve'
 import svelte from 'rollup-plugin-svelte'
 
+import svelteBabelPreprocessor from './svelte.babel.preprocessor'
+
 export default {
   input: 'src/index.ts',
   output: {
@@ -27,6 +29,7 @@ export default {
         css.write('dist/bundle.css')
       },
       preprocess: {
+        script: svelteBabelPreprocessor,
         style: async ({content}) => {
           const result = await postcss([postcssPresetEnv()]).process(content)
           return {
