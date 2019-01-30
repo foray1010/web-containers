@@ -7,10 +7,11 @@
   },
   "scripts": {
     "build:watch": "rollup -c -w",
+    "ci": "concurrently npm:lint npm:test",
+    "dev": "concurrently npm:build:watch npm:start:firefox --kill-others",
     "lint": "eslint '**/*.ts'",
-    "test": "tsc",
     "start:firefox": "web-ext run --source-dir ./dist/",
-    "dev": "concurrently \"npm:build:watch\" \"npm:start:firefox\" --kill-others"
+    "test": "tsc"
   },
   "dependencies": {
     "svelte": "^2.16.0"
