@@ -1,6 +1,7 @@
 import postcss from 'postcss'
 import postcssPresetEnv from 'postcss-preset-env'
 import babel from 'rollup-plugin-babel'
+import copy from 'rollup-plugin-copy'
 import html from 'rollup-plugin-fill-html'
 import resolve from 'rollup-plugin-node-resolve'
 import svelte from 'rollup-plugin-svelte'
@@ -14,6 +15,10 @@ export default {
   plugins: [
     babel({
       extensions: ['.ts', '.mjs', '.js']
+    }),
+    copy({
+      'manifest.json': 'dist/manifest.json',
+      verbose: true
     }),
     html({
       template: 'src/index.html',
