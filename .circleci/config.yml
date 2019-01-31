@@ -11,5 +11,5 @@ jobs:
       - save_cache:
           key: 'node-cache-{{ checksum "package-lock.json" }}'
           paths:
-            - '~/.node-cache'
+            - '~/.npm'
       - run: 'npm run ci'
