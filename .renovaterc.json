@@ -1,3 +1,10 @@
 {
-  "extends": ["config:base"]
+  "extends": ["config:base"],
+  "rangeStrategy": "pin",
+  "timezone": "Asia/Hong_Kong",
+  "schedule": ["after 2:00am and before 6:00am"],
+  "semanticCommits": true,
+  "prCreation": "not-pending",
+  "assignees": ["@foray1010", "@nickccm1122"],
+  "reviewers": ["@foray1010", "@nickccm1122"]
 }
