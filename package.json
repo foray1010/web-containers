@@ -9,7 +9,7 @@
     "build:watch": "rollup -c -w",
     "ci": "concurrently npm:lint npm:test",
     "dev": "concurrently npm:build:watch npm:start:firefox --kill-others",
-    "lint": "eslint '**/*.ts'",
+    "lint": "eslint '**/*.{js,ts}'",
     "start:firefox": "web-ext run --source-dir ./dist/",
     "test": "tsc"
   },
