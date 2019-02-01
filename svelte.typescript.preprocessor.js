@@ -7,8 +7,8 @@ import * as ts from 'typescript'
 
 import tsconfig from './tsconfig.json'
 
-const removeFile = promisify(fs.unlink)
-const writeFile = promisify(fs.writeFile)
+const unlinkFileAsync = promisify(fs.unlink)
+const writeFileAsync = promisify(fs.writeFile)
 
 const renameBaseName = ({filePath, prefix, ext}) => {
   const fileName = path.basename(filePath, path.extname(filePath))
@@ -23,7 +23,7 @@ const renameBaseName = ({filePath, prefix, ext}) => {
 
 export default async ({content, filename: filePath}) => {
   const tmpFilePath = renameBaseName({filePath, prefix: '.svelte-typescript.', ext: '.ts'})
-  await writeFile(tmpFilePath, content)
+  await writeFileAsync(tmpFilePath, content)
 
   const compilerOptions = ts.convertCompilerOptionsFromJson(
     tsconfig.compilerOptions || {},
@@ -47,7 +47,7 @@ export default async ({content, filename: filePath}) => {
   })
 
   // cleanup
-  await removeFile(tmpFilePath)
+  await unlinkFileAsync(tmpFilePath)
 
   return {
     code: content

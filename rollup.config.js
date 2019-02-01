@@ -1,6 +1,7 @@
 import postcss from 'postcss'
 import postcssPresetEnv from 'postcss-preset-env'
 import babel from 'rollup-plugin-babel'
+import commonjs from 'rollup-plugin-commonjs'
 import copy from 'rollup-plugin-copy'
 import html from 'rollup-plugin-fill-html'
 import resolve from 'rollup-plugin-node-resolve'
@@ -19,6 +20,7 @@ export default {
     babel({
       extensions: ['.ts', '.mjs', '.js']
     }),
+    commonjs(),
     copy({
       'manifest.json': 'dist/manifest.json',
       verbose: true
