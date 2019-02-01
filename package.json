@@ -7,7 +7,7 @@
   },
   "scripts": {
     "build:watch": "rollup -c -w",
-    "ci": "run-p npm:lint npm:test",
+    "ci": "run-p lint test",
     "predev": "rollup -c",
     "dev": "run-p --print-label --print-name build:watch start:firefox",
     "lint": "eslint '**/*.{js,ts}'",
