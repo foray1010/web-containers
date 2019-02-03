@@ -37,7 +37,10 @@ export default {
         css.write('dist/bundle.css')
       },
       preprocess: {
-        script: svelteBabelPreprocessor,
+        script: async (...args) => {
+          await svelteTypescriptPreprocessor(...args)
+          return svelteBabelPreprocessor(...args)
+        },
         style: async ({content}) => {
           const result = await postcss([postcssPresetEnv()]).process(content)
           return {
