@@ -147,3 +147,4 @@ $RECYCLE.BIN/
 
 # Specific for this repo
 dist/
+.svelte-typescript.*
