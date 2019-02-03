@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "engines": {
-    "node": ">=8.9"
+    "node": ">=8.9",
+    "npm": ">=6.6"
   },
   "scripts": {
     "build:watch": "rollup -c -w",
