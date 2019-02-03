@@ -10,7 +10,6 @@
   "node": {
     "supportPolicy": ["lts_active"]
   },
-  "rangeStrategy": "pin",
   "semanticCommits": true,
   "prCreation": "not-pending"
 }
