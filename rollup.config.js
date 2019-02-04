@@ -3,6 +3,7 @@ import postcssPresetEnv from 'postcss-preset-env'
 import babel from 'rollup-plugin-babel'
 import commonjs from 'rollup-plugin-commonjs'
 import copy from 'rollup-plugin-copy'
+import del from 'rollup-plugin-delete'
 import html from 'rollup-plugin-fill-html'
 import resolve from 'rollup-plugin-node-resolve'
 import replace from 'rollup-plugin-replace'
@@ -29,6 +30,9 @@ export default {
     copy({
       'manifest.json': 'dist/manifest.json',
       verbose: true
+    }),
+    del({
+      targets: 'dist'
     }),
     html({
       template: 'src/index.html',
