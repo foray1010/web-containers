@@ -1,7 +1,10 @@
 {
+  "background": {
+    "page": "background/app.html"
+  },
   "browser_action": {
     "browser_style": true,
-    "default_popup": "index.html"
+    "default_popup": "popup/app.html"
   },
   "manifest_version": 2,
   "name": "web-containers",
