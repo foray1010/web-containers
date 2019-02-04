@@ -7,14 +7,14 @@
     "npm": ">=6.6"
   },
   "scripts": {
-    "build:dev": "cross-env NODE_ENV=development rollup -c",
-    "build:dev:watch": "cross-env NODE_ENV=development rollup -c -w",
-    "build:prod": "cross-env NODE_ENV=production rollup -c",
+    "build:dev": "rm -rf dist/ && cross-env NODE_ENV=development rollup -c",
+    "build:dev:watch:dirty": "cross-env NODE_ENV=development rollup -c -w",
+    "build:prod": "rm -rf dist/ && cross-env NODE_ENV=production rollup -c",
     "ci": "run-p lint test",
     "predev": "npm run build:dev",
-    "dev": "run-p --print-label --print-name build:dev:watch start:firefox",
+    "dev": "run-p --print-label --print-name build:dev:watch:dirty start:firefox",
     "lint": "eslint '**/*.{js,ts}'",
-    "start:firefox": "web-ext run --source-dir ./dist/",
+    "start:firefox": "web-ext run --source-dir dist/",
     "test": "tsc"
   },
   "dependencies": {
@@ -44,8 +44,6 @@
     "rollup-plugin-babel": "4.3.2",
     "rollup-plugin-commonjs": "9.2.0",
     "rollup-plugin-copy": "0.2.3",
-    "rollup-plugin-delete": "0.2.1",
-    "rollup-plugin-fill-html": "1.1.0",
     "rollup-plugin-node-resolve": "4.0.0",
     "rollup-plugin-replace": "2.1.0",
     "rollup-plugin-svelte": "5.0.1",
