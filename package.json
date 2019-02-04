@@ -7,9 +7,9 @@
     "npm": ">=6.6"
   },
   "scripts": {
-    "build:dev": "rm -rf dist/ && cross-env NODE_ENV=development rollup -c",
+    "build:dev": "shx rm -rf dist/ && cross-env NODE_ENV=development rollup -c",
     "build:dev:watch:dirty": "cross-env NODE_ENV=development rollup -c -w",
-    "build:prod": "rm -rf dist/ && cross-env NODE_ENV=production rollup -c",
+    "build:prod": "shx rm -rf dist/ && cross-env NODE_ENV=production rollup -c",
     "ci": "run-p lint test",
     "predev": "npm run build:dev",
     "dev": "run-p --print-label --print-name build:dev:watch:dirty start:firefox",
@@ -48,6 +48,7 @@
     "rollup-plugin-replace": "2.1.0",
     "rollup-plugin-svelte": "5.0.1",
     "rollup-plugin-terser": "4.0.3",
+    "shx": "0.3.2",
     "svelte": "2.16.0",
     "typescript": "3.3.1",
     "web-ext": "2.9.3"
