@@ -5,16 +5,21 @@ import commonjs from 'rollup-plugin-commonjs'
 import copy from 'rollup-plugin-copy'
 import html from 'rollup-plugin-fill-html'
 import resolve from 'rollup-plugin-node-resolve'
+import replace from 'rollup-plugin-replace'
 import svelte from 'rollup-plugin-svelte'
+import {terser} from 'rollup-plugin-terser'
 
 import svelteBabelPreprocessor from './svelte.babel.preprocessor'
 import svelteTypescriptPreprocessor from './svelte.typescript.preprocessor'
+
+const isProd = process.env.NODE_ENV === 'production'
 
 export default {
   input: 'src/index.ts',
   output: {
     file: 'dist/bundle.js',
-    format: 'cjs'
+    format: 'iife',
+    sourcemap: !isProd
   },
   plugins: [
     babel({
@@ -29,12 +34,15 @@ export default {
       template: 'src/index.html',
       filename: 'index.html'
     }),
+    replace({
+      'process.env.NODE_ENV': process.env.NODE_ENV
+    }),
     resolve({
       extensions: ['.ts', '.mjs', '.js', '.json']
     }),
     svelte({
       css: (css) => {
-        css.write('dist/bundle.css')
+        css.write('dist/bundle.css', !isProd)
       },
       preprocess: {
         script: async (...args) => {
@@ -49,6 +57,7 @@ export default {
           }
         }
       }
-    })
+    }),
+    isProd && terser()
   ]
 }
