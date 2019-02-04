@@ -3,8 +3,6 @@ import postcssPresetEnv from 'postcss-preset-env'
 import babel from 'rollup-plugin-babel'
 import commonjs from 'rollup-plugin-commonjs'
 import copy from 'rollup-plugin-copy'
-import del from 'rollup-plugin-delete'
-import html from 'rollup-plugin-fill-html'
 import resolve from 'rollup-plugin-node-resolve'
 import replace from 'rollup-plugin-replace'
 import svelte from 'rollup-plugin-svelte'
@@ -19,7 +17,7 @@ const isProd = process.env.NODE_ENV === 'production'
 export default appNames.map((appName) => ({
   input: `src/${appName}.ts`,
   output: {
-    file: `dist/${appName}/app.js`,
+    file: `dist/${appName}.js`,
     format: 'iife',
     sourcemap: !isProd
   },
@@ -30,14 +28,8 @@ export default appNames.map((appName) => ({
     commonjs(),
     copy({
       'manifest.json': 'dist/manifest.json',
+      'src/popup.html': 'dist/popup.html',
       verbose: true
-    }),
-    del({
-      targets: 'dist'
-    }),
-    html({
-      template: 'src/template.html',
-      filename: `${appName}/app.html`
     }),
     replace({
       'process.env.NODE_ENV': process.env.NODE_ENV
@@ -47,7 +39,9 @@ export default appNames.map((appName) => ({
     }),
     svelte({
       css: (css) => {
-        css.write(`dist/${appName}/app.css`, !isProd)
+        if (css.code) {
+          css.write(`dist/${appName}.css`, !isProd)
+        }
       },
       preprocess: {
         script: async (...args) => {

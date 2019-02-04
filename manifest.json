@@ -1,10 +1,10 @@
 {
   "background": {
-    "page": "background/app.html"
+    "scripts": ["background.js"]
   },
   "browser_action": {
     "browser_style": true,
-    "default_popup": "popup/app.html"
+    "default_popup": "popup.html"
   },
   "manifest_version": 2,
   "name": "web-containers",
