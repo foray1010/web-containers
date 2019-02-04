@@ -13,12 +13,13 @@ import {terser} from 'rollup-plugin-terser'
 import svelteBabelPreprocessor from './svelte.babel.preprocessor'
 import svelteTypescriptPreprocessor from './svelte.typescript.preprocessor'
 
+const appNames = ['background', 'popup']
 const isProd = process.env.NODE_ENV === 'production'
 
-export default {
-  input: 'src/index.ts',
+export default appNames.map((appName) => ({
+  input: `src/${appName}.ts`,
   output: {
-    file: 'dist/bundle.js',
+    file: `dist/${appName}.js`,
     format: 'iife',
     sourcemap: !isProd
   },
@@ -35,8 +36,8 @@ export default {
       targets: 'dist'
     }),
     html({
-      template: 'src/index.html',
-      filename: 'index.html'
+      template: 'src/template.html',
+      filename: `${appName}.html`
     }),
     replace({
       'process.env.NODE_ENV': process.env.NODE_ENV
@@ -46,7 +47,7 @@ export default {
     }),
     svelte({
       css: (css) => {
-        css.write('dist/bundle.css', !isProd)
+        css.write(`dist/${appName}.css`, !isProd)
       },
       preprocess: {
         script: async (...args) => {
@@ -64,4 +65,4 @@ export default {
     }),
     isProd && terser()
   ]
-}
+}))
