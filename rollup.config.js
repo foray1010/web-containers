@@ -19,7 +19,7 @@ const isProd = process.env.NODE_ENV === 'production'
 export default appNames.map((appName) => ({
   input: `src/${appName}.ts`,
   output: {
-    file: `dist/${appName}.js`,
+    file: `dist/${appName}/app.js`,
     format: 'iife',
     sourcemap: !isProd
   },
@@ -37,7 +37,7 @@ export default appNames.map((appName) => ({
     }),
     html({
       template: 'src/template.html',
-      filename: `${appName}.html`
+      filename: `${appName}/app.html`
     }),
     replace({
       'process.env.NODE_ENV': process.env.NODE_ENV
@@ -47,7 +47,7 @@ export default appNames.map((appName) => ({
     }),
     svelte({
       css: (css) => {
-        css.write(`dist/${appName}.css`, !isProd)
+        css.write(`dist/${appName}/app.css`, !isProd)
       },
       preprocess: {
         script: async (...args) => {
