@@ -27,7 +27,7 @@ export default appNames.map((appName) => ({
     }),
     commonjs(),
     copy({
-      'manifest.json': 'dist/manifest.json',
+      'src/manifest.json': 'dist/manifest.json',
       'src/popup.html': 'dist/popup.html',
       verbose: true
     }),
