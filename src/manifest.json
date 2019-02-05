@@ -6,7 +6,14 @@
     "browser_style": true,
     "default_popup": "popup.html"
   },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "@web-containers",
+      "strict_min_version": "53.0"
+    }
+  },
   "manifest_version": 2,
+  "permissions": ["http://*/*", "https://*/*", "contextualIdentities", "cookies"],
   "name": "web-containers",
   "version": "0.1"
 }
