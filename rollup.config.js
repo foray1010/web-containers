@@ -19,7 +19,7 @@ export default appNames.map((appName) => ({
   output: {
     file: `dist/${appName}.js`,
     format: 'iife',
-    sourcemap: !isProd
+    sourcemap: isProd ? false : 'inline'
   },
   plugins: [
     babel({
@@ -40,7 +40,7 @@ export default appNames.map((appName) => ({
     svelte({
       css: (css) => {
         if (css.code) {
-          css.write(`dist/${appName}.css`, !isProd)
+          css.write(`dist/${appName}.css`, false)
         }
       },
       preprocess: {
