@@ -1,3 +1,5 @@
+import convertDomainToRegExp from '../utils/convertDomainToRegExp'
+
 const DEFAULT_CONTAINER_COLOR = 'blue'
 const DEFAULT_CONTAINER_ICON = 'fingerprint'
 
@@ -27,22 +29,35 @@ async function setupContainer(option: {
   }
 }
 
-async function removeContainerCookiesByDomain(storeId: string, domain: string): Promise<void> {
-  // TODO: safer way to form the cookie url?
-  const cookieUrl = `https://${domain}/`
+function cookieDomainToUrl(domain: string): string {
+  const hostname = domain.replace(/^\./, '')
+  return `https://${hostname}/`
+}
 
-  const cookies = await browser.cookies.getAll({
-    domain,
+async function removeContainerCookiesByDomains(
+  storeId: string,
+  domains: Array<string>
+): Promise<void> {
+  const allCookies = await browser.cookies.getAll({
     storeId
   })
 
+  const domainRegExps = domains.map(convertDomainToRegExp)
+
+  const matchDomainCookies = allCookies.filter((cookie) => {
+    return domainRegExps.some((regexp) => {
+      return regexp.test(cookie.domain)
+    })
+  })
+
   await Promise.all(
-    cookies.map((cookie) =>
-      browser.cookies.remove({
+    matchDomainCookies.map((cookie) => {
+      return browser.cookies.remove({
         name: cookie.name,
-        url: cookieUrl,
+        url: cookieDomainToUrl(cookie.domain),
         storeId
-      }))
+      })
+    })
   )
 }
 
@@ -65,8 +80,7 @@ async function clearDomainCookies(
     (acc, container) => {
       return [
         ...acc,
-        ...containerOption.domains.map(async (domain) =>
-          removeContainerCookiesByDomain(container.cookieStoreId, domain))
+        removeContainerCookiesByDomains(container.cookieStoreId, containerOption.domains)
       ]
     },
     []
