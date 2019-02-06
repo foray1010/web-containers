@@ -5,4 +5,5 @@
   - 'import-sort --write'
   - 'prettier-eslint --write'
   - 'eslint --fix'
+  - 'jest --bail --findRelatedTests --config .jestrc.json'
   - 'git add'

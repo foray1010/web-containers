@@ -13,5 +13,18 @@
         "allExtensions": true
       }
     ]
-  ]
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "modules": "commonjs",
+            "useBuiltIns": "entry"
+          }
+        ]
+      ]
+    }
+  }
 }
