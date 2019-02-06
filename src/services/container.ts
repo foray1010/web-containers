@@ -2,6 +2,7 @@ import convertDomainToRegExp from '../utils/convertDomainToRegExp'
 
 const DEFAULT_CONTAINER_COLOR = 'blue'
 const DEFAULT_CONTAINER_ICON = 'fingerprint'
+const DEFAULT_FIREFOX_COOKIE_STORE_ID = 'firefox-default'
 
 /**
  * Upsert a container and retrieve the cookieStoreId
@@ -72,15 +73,16 @@ async function clearDomainCookies(
 ): Promise<void> {
   const containers = await browser.contextualIdentities.query({})
 
-  const otherContainers = containers.filter(
-    (container) => container.cookieStoreId !== cookieStoreId
-  )
+  const cookieStoreToBeRemoved = containers
+    .filter((container) => container.cookieStoreId !== cookieStoreId)
+    .map((container) => container.cookieStoreId)
+    .concat(DEFAULT_FIREFOX_COOKIE_STORE_ID)
 
-  const removeAllDomainCookiesAsync = otherContainers.reduce<Array<Promise<void>>>(
-    (acc, container) => {
+  const removeAllDomainCookiesAsync = cookieStoreToBeRemoved.reduce<Array<Promise<void>>>(
+    (acc, storeId) => {
       return [
         ...acc,
-        removeContainerCookiesByDomains(container.cookieStoreId, containerOption.domains)
+        removeContainerCookiesByDomains(storeId, containerOption.domains)
       ]
     },
     []
