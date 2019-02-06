@@ -4,7 +4,14 @@ import {clearDomainCookies, setupContainer} from './services/container'
 import convertDomainToRegExp from './utils/convertDomainToRegExp'
 
 // TODO: testing, can remove
-const TWITTER_DOMAINS = ['*.t.co', '*.twimg.com', '*.twitter.com']
+const TWITTER_DOMAINS = [
+  '*.t.co',
+  '*.twimg.com',
+  '*.twitter.com',
+  't.co',
+  'twimg.com',
+  'twitter.com'
+]
 const TWITTER_DOMAIN_REGEXPS = TWITTER_DOMAINS.map(convertDomainToRegExp)
 console.debug('TWITTER_DOMAIN_REGEXPS', TWITTER_DOMAIN_REGEXPS)
 
