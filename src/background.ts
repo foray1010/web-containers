@@ -16,9 +16,8 @@ const TWITTER_DOMAIN_REGEXPS = TWITTER_DOMAINS.map(convertDomainToRegExp)
 console.debug('TWITTER_DOMAIN_REGEXPS', TWITTER_DOMAIN_REGEXPS)
 
 async function onBeforeRequestListener(
-  ...params: Parameters<Parameters<typeof browser.webRequest.onBeforeRequest.addListener>[0]>
+  details: Parameters<Parameters<typeof browser.webRequest.onBeforeRequest.addListener>[0]>[0]
 ) {
-  const [details] = params
   console.debug('onBeforeRequest request', {
     'details.url': details.url,
     'new URL(details.url).hostname': new URL(details.url).hostname
