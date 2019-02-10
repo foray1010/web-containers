@@ -15,29 +15,33 @@ const TWITTER_DOMAINS = [
 const TWITTER_DOMAIN_REGEXPS = TWITTER_DOMAINS.map(convertDomainToRegExp)
 console.debug('TWITTER_DOMAIN_REGEXPS', TWITTER_DOMAIN_REGEXPS)
 
-browser.webRequest.onBeforeRequest.addListener(
-  (details) => {
-    console.debug('onBeforeRequest request', {
-      'details.url': details.url,
-      'new URL(details.url).hostname': new URL(details.url).hostname
-    })
+async function onBeforeRequestListener(
+  details: Parameters<Parameters<typeof browser.webRequest.onBeforeRequest.addListener>[0]>[0]
+) {
+  console.debug('onBeforeRequest request', {
+    'details.url': details.url,
+    'new URL(details.url).hostname': new URL(details.url).hostname
+  })
 
-    const response = {
-      cancel: TWITTER_DOMAIN_REGEXPS.some((regexp) => {
-        return regexp.test(new URL(details.url).hostname)
-      })
-    }
-    console.debug('onBeforeRequest response', response)
-    return response
-  },
-  {
-    types: ['main_frame'],
-    urls: ['http://*/*', 'https://*/*']
-  },
-  ['blocking']
-)
+  const response = {
+    cancel: TWITTER_DOMAIN_REGEXPS.some((regexp) => {
+      return regexp.test(new URL(details.url).hostname)
+    })
+  }
+  console.debug('onBeforeRequest response', response)
+  return response
+}
 
 async function init(): Promise<void> {
+  browser.webRequest.onBeforeRequest.addListener(
+    onBeforeRequestListener,
+    {
+      types: ['main_frame'],
+      urls: ['http://*/*', 'https://*/*']
+    },
+    ['blocking']
+  )
+
   const cookieStoreId = await setupContainer({
     name: 'Testing Twitter'
   })
