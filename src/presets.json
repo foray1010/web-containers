@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Google",
+    "color": "red",
+    "icon": "fingerprint",
+    "domains": ["*.google.com", "*.youtube.com"]
+  },
+  {
+    "name": "Twitter",
+    "color": "blue",
+    "icon": "fingerprint",
+    "domains": ["*.t.co", "*.twimg.com", "*.twitter.com"]
+  }
+]
