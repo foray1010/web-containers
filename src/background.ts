@@ -2,6 +2,7 @@ import '@babel/polyfill'
 
 import {DEFAULT_FIREFOX_COOKIE_STORE_ID} from './constants/container'
 import presets from './presets.json'
+import * as configurationService from './services/configurations'
 import {clearDomainCookies, setupContainer} from './services/container'
 import {reopenTabInContainer} from './services/tabs'
 import convertDomainToRegExp from './utils/convertDomainToRegExp'
@@ -77,18 +78,26 @@ async function onBeforeRequestListener(
 }
 
 async function init(): Promise<void> {
-  await Promise.all(
-    presets.map(async (preset) => {
-      const cookieStoreId = await setupContainer({
-        name: preset.name,
-        color: preset.color,
-        icon: preset.icon
-      })
-      await clearDomainCookies(cookieStoreId, {
-        domains: preset.domains
-      })
-    })
-  )
+  const syncConfigs = await configurationService.getSyncConfigs()
+
+  if (syncConfigs && !syncConfigs[configurationService.CONTAINER_CONFIGS_FIELD_KEY]) {
+    const containerConfigs = await configurationService.saveContainerConfigs(presets)
+
+    if (containerConfigs) {
+      await Promise.all(
+        containerConfigs.map(async (preset) => {
+          const cookieStoreId = await setupContainer({
+            name: preset.name,
+            color: preset.color,
+            icon: preset.icon
+          })
+          await clearDomainCookies(cookieStoreId, {
+            domains: preset.domains
+          })
+        })
+      )
+    }
+  }
 
   browser.webRequest.onBeforeRequest.addListener(
     onBeforeRequestListener,

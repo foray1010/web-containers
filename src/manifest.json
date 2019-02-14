@@ -20,7 +20,8 @@
     "contextualIdentities",
     "cookies",
     "webRequest",
-    "webRequestBlocking"
+    "webRequestBlocking",
+    "storage"
   ],
   "version": "0.1"
 }
