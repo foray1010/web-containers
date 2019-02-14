@@ -27,12 +27,7 @@
       ]
     },
     "production": {
-      "plugins": [
-        [
-          "babel-plugin-transform-remove-console",
-          { "exclude": ["error", "warn"] }
-        ]
-      ]
+      "plugins": [["babel-plugin-transform-remove-console", {"exclude": ["error", "warn"]}]]
     }
   }
 }
