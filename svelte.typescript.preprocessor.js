@@ -49,6 +49,10 @@ export default async ({content, filename: filePath}) => {
   // cleanup
   await unlinkFileAsync(tmpFilePath)
 
+  if (allDiagnostics.length > 0 && process.env.NODE_ENV === 'production') {
+    process.exit(1)
+  }
+
   return {
     code: content
   }
