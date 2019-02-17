@@ -12,7 +12,7 @@ import {terser} from 'rollup-plugin-terser'
 import svelteBabelPreprocessor from './svelte.babel.preprocessor'
 import svelteTypescriptPreprocessor from './svelte.typescript.preprocessor'
 
-const appNames = ['background', 'popup']
+const appNames = ['background', 'options', 'popup']
 const isProd = process.env.NODE_ENV === 'production'
 
 export default appNames.map((appName) => ({
@@ -29,6 +29,7 @@ export default appNames.map((appName) => ({
     commonjs(),
     copy({
       'src/manifest.json': 'dist/manifest.json',
+      'src/options.html': 'dist/options.html',
       'src/popup.html': 'dist/popup.html',
       verbose: true
     }),
