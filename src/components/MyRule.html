@@ -1,0 +1,37 @@
+<table>
+  <tr>
+    <td>Name</td>
+    <td><input type="text" value="{name}" required /></td>
+  </tr>
+  <tr>
+    <td>Icon</td>
+    <td>
+      <select value="{icon}">
+        {#each containerIcons as containerIcon}
+        <option>{containerIcon}</option>
+        {/each}
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td>Color</td>
+    <td>
+      <select value="{color}">
+        {#each containerColors as containerColor}
+        <option>{containerColor}</option>
+        {/each}
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td>Domains</td>
+    <td>
+      <!-- textarea must not be wrapped by space -->
+      <!-- prettier-ignore -->
+      <textarea
+        rows="{domains.length || 1}"
+        required
+      >{domains.join('\n')}</textarea>
+    </td>
+  </tr>
+</table>

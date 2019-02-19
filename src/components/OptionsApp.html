@@ -12,9 +12,40 @@
       {/each}
     </ul>
   </fieldset>
+  <fieldset>
+    <legend>My Rules</legend>
+    <ul class="styleless-list">
+      {#each myRules as myRule}
+      <li class="my-rules-item">
+        <MyRule
+          containerIcons="{containerIcons}"
+          containerColors="{containerColors}"
+          name="{myRule.name}"
+          icon="{myRule.icon}"
+          color="{myRule.color}"
+          domains="{myRule.domains}"
+        />
+      </li>
+      {/each}
+    </ul>
+  </fieldset>
 </form>
 
+<script>
+  import MyRule from './MyRule.html'
+
+  export default {
+    components: {
+      MyRule
+    }
+  }
+</script>
+
 <style>
+  .my-rules-item + .my-rules-item {
+    margin-top: 20px;
+  }
+
   .styleless-list {
     list-style-type: none;
     margin: 0;
