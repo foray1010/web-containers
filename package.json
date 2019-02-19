@@ -47,7 +47,7 @@
     "postcss": "7.0.14",
     "postcss-preset-env": "6.5.0",
     "prettier-eslint-cli": "4.7.1",
-    "rollup": "1.2.1",
+    "rollup": "1.2.2",
     "rollup-plugin-babel": "4.3.2",
     "rollup-plugin-commonjs": "9.2.0",
     "rollup-plugin-copy": "0.2.3",
