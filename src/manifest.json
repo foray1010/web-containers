@@ -14,6 +14,9 @@
   },
   "manifest_version": 2,
   "name": "web-containers",
+  "options_ui": {
+    "page": "options.html"
+  },
   "permissions": [
     "http://*/*",
     "https://*/*",

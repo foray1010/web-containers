@@ -1,0 +1,23 @@
+<form>
+  <fieldset>
+    <legend>Presets</legend>
+    <ul class="styleless-list">
+      {#each presets as preset}
+      <li>
+        <label>
+          <input type="checkbox" />
+          {preset.name}
+        </label>
+      </li>
+      {/each}
+    </ul>
+  </fieldset>
+</form>
+
+<style>
+  .styleless-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+</style>
