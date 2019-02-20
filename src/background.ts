@@ -81,22 +81,20 @@ async function init(): Promise<void> {
   const syncConfigs = await configurationService.getSyncConfigs()
 
   if (syncConfigs && !syncConfigs[configurationService.CONTAINER_CONFIGS_FIELD_KEY]) {
-    const containerConfigs = await configurationService.saveContainerConfigs(presets)
+    await configurationService.saveContainerConfigs(presets)
 
-    if (containerConfigs) {
-      await Promise.all(
-        containerConfigs.map(async (preset) => {
-          const cookieStoreId = await setupContainer({
-            name: preset.name,
-            color: preset.color,
-            icon: preset.icon
-          })
-          await clearDomainCookies(cookieStoreId, {
-            domains: preset.domains
-          })
+    await Promise.all(
+      presets.map(async (preset) => {
+        const cookieStoreId = await setupContainer({
+          name: preset.name,
+          color: preset.color,
+          icon: preset.icon
         })
-      )
-    }
+        await clearDomainCookies(cookieStoreId, {
+          domains: preset.domains
+        })
+      })
+    )
   }
 
   browser.webRequest.onBeforeRequest.addListener(

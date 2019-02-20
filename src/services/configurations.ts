@@ -16,7 +16,7 @@ function validateContainerPresets(config: Array<ContainerConfig>): Promise<boole
   return true
 }
 
-async function getSyncConfigs(): Promise<SyncConfig | undefined> {
+async function getSyncConfigs(): Promise<SyncConfig | void> {
   try {
     const syncConfigs = (await browser.storage.sync.get()) as SyncConfig
 
@@ -27,9 +27,7 @@ async function getSyncConfigs(): Promise<SyncConfig | undefined> {
   }
 }
 
-async function saveContainerConfigs(
-  config: Array<ContainerConfig>
-): Promise<Array<ContainerConfig> | undefined> {
+async function saveContainerConfigs(config: Array<ContainerConfig>): Promise<void> {
   try {
     const validated = validateContainerPresets(config)
 
@@ -40,11 +38,9 @@ async function saveContainerConfigs(
     await browser.storage.sync.set({
       [CONTAINER_CONFIGS_FIELD_KEY]: config
     })
-
-    return config
   } catch (err) {
     console.error('Failed to save container config', err)
-    return undefined
+    throw err
   }
 }
 
