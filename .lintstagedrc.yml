@@ -1,7 +1,11 @@
 '.babelrc':
   - 'prettier-eslint --parser json --write'
   - 'git add'
-'*.{html,json,md,yaml,yml}':
+'*.html':
+  - 'prettier-eslint --write'
+  - 'eslint --fix'
+  - 'git add'
+'*.{json,md,yaml,yml}':
   - 'prettier-eslint --write'
   - 'git add'
 '*.{js,ts}':
