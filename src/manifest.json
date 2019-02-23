@@ -9,7 +9,7 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "@web-containers",
-      "strict_min_version": "53.0"
+      "strict_min_version": "57.0"
     }
   },
   "manifest_version": 2,
