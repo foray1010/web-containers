@@ -20,23 +20,40 @@
         <MyRule
           containerIcons="{containerIcons}"
           containerColors="{containerColors}"
-          name="{myRule.name}"
-          icon="{myRule.icon}"
-          color="{myRule.color}"
-          domains="{myRule.domains}"
+          bind:name="myRule.name"
+          bind:icon="myRule.icon"
+          bind:color="myRule.color"
+          bind:domains="myRule.domains"
         />
       </li>
       {/each}
     </ul>
   </fieldset>
+  <button type="submit" on:click="submit(event)">Submit</button>
 </form>
 
 <script>
   import MyRule from './MyRule.html'
+  import {saveContainerConfigs} from '../services/configurations'
 
   export default {
     components: {
       MyRule
+    },
+    data() {
+      return {
+        myRules: [],
+        presets: []
+      }
+    },
+    methods: {
+      submit(event) {
+        event.preventDefault()
+
+        const {myRules} = this.get()
+
+        saveContainerConfigs(myRules)
+      }
     }
   }
 </script>

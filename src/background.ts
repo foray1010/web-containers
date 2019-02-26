@@ -80,7 +80,7 @@ async function onBeforeRequestListener(
 async function init(): Promise<void> {
   const syncConfigs = await configurationService.getSyncConfigs()
 
-  if (syncConfigs && !syncConfigs[configurationService.CONTAINER_CONFIGS_FIELD_KEY]) {
+  if (!syncConfigs[configurationService.CONTAINER_CONFIGS_FIELD_KEY]) {
     await configurationService.saveContainerConfigs(presets)
 
     await Promise.all(

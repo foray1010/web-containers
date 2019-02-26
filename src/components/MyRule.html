@@ -1,12 +1,12 @@
 <table>
   <tr>
     <td>Name</td>
-    <td><input type="text" value="{name}" required /></td>
+    <td><input type="text" bind:value="name" required /></td>
   </tr>
   <tr>
     <td>Icon</td>
     <td>
-      <select value="{icon}">
+      <select bind:value="icon">
         {#each containerIcons as containerIcon}
         <option>{containerIcon}</option>
         {/each}
@@ -16,7 +16,7 @@
   <tr>
     <td>Color</td>
     <td>
-      <select value="{color}">
+      <select bind:value="color">
         {#each containerColors as containerColor}
         <option>{containerColor}</option>
         {/each}
@@ -26,12 +26,21 @@
   <tr>
     <td>Domains</td>
     <td>
-      <!-- textarea must not be wrapped by space -->
-      <!-- prettier-ignore -->
-      <textarea
-        rows="{domains.length || 1}"
-        required
-      >{domains.join('\n')}</textarea>
+      <ul class="styleless-list">
+        {#each domains as domain}
+        <li>
+          <input type="text" bind:value="domain" />
+        </li>
+        {/each}
+      </ul>
     </td>
   </tr>
 </table>
+
+<style>
+  .styleless-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+</style>

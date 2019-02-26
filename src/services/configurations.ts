@@ -16,14 +16,14 @@ function validateContainerPresets(config: Array<ContainerConfig>): Promise<boole
   return true
 }
 
-async function getSyncConfigs(): Promise<SyncConfig | void> {
+async function getSyncConfigs(): Promise<SyncConfig> {
   try {
     const syncConfigs = (await browser.storage.sync.get()) as SyncConfig
 
     return syncConfigs
   } catch (err) {
     console.error('Failed to get container config', err)
-    return undefined
+    throw err
   }
 }
 
