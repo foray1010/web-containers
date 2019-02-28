@@ -3,6 +3,7 @@ import path from 'path'
 import {promisify} from 'util'
 
 import chalk from 'chalk'
+import fg from 'fast-glob'
 import * as ts from 'typescript'
 
 import tsconfig from './tsconfig.json'
@@ -25,12 +26,15 @@ export default async ({content, filename: filePath}) => {
   const tmpFilePath = renameBaseName({filePath, prefix: '.svelte-typescript.', ext: '.ts'})
   await writeFileAsync(tmpFilePath, content)
 
+  const typeDefinitionFilePaths = (await fg(tsconfig.include || [])).filter((x) =>
+    /\.d\.ts$/.test(x))
+
   const compilerOptions = ts.convertCompilerOptionsFromJson(
     tsconfig.compilerOptions || {},
     process.cwd()
   )
 
-  const program = ts.createProgram([tmpFilePath], {
+  const program = ts.createProgram([tmpFilePath, ...typeDefinitionFilePaths], {
     ...compilerOptions.options,
     // not sure why this setting need to be disabled
     isolatedModules: false,
