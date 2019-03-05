@@ -47,7 +47,7 @@
       }
     },
     methods: {
-      submit(event) {
+      submit(this: Svelte, event: Event) {
         event.preventDefault()
 
         const {myRules} = this.get()
