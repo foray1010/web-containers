@@ -11,9 +11,9 @@ interface SyncConfig {
   containerConfigs?: Array<ContainerConfig>
 }
 
-function validateContainerPresets(config: Array<ContainerConfig>): Promise<boolean> | boolean {
+function validateContainerPresets(config: Array<ContainerConfig>): boolean {
   // TODO: validate the config object
-  return true
+  return config !== undefined
 }
 
 async function getSyncConfigs(): Promise<SyncConfig> {
