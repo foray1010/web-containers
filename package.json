@@ -19,12 +19,12 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@babel/polyfill": "7.2.5",
+    "@babel/polyfill": "7.4.0",
     "escape-string-regexp": "1.0.5"
   },
   "devDependencies": {
-    "@babel/core": "7.3.4",
-    "@babel/preset-env": "7.3.4",
+    "@babel/core": "7.4.0",
+    "@babel/preset-env": "7.4.1",
     "@babel/preset-typescript": "7.3.3",
     "@commitlint/cli": "7.5.2",
     "@commitlint/config-conventional": "7.5.0",
