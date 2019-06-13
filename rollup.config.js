@@ -13,12 +13,13 @@ import svelteBabelPreprocessor from './svelte.babel.preprocessor'
 import svelteTypescriptPreprocessor from './svelte.typescript.preprocessor'
 
 const appNames = ['background', 'options', 'popup']
+const dist = 'dist'
 const isProd = process.env.NODE_ENV === 'production'
 
 export default appNames.map((appName) => ({
   input: `src/${appName}.ts`,
   output: {
-    file: `dist/${appName}.js`,
+    file: `${dist}/${appName}.js`,
     format: 'iife',
     sourcemap: isProd ? false : 'inline'
   },
@@ -28,8 +29,20 @@ export default appNames.map((appName) => ({
     }),
     commonjs(),
     copy({
-      targets: ['src/manifest.json', 'src/options.html', 'src/popup.html'],
-      outputFolder: 'dist',
+      targets: [
+        {
+          src: 'src/manifest.json',
+          dest: dist
+        },
+        {
+          src: 'src/options.html',
+          dest: dist
+        },
+        {
+          src: 'src/popup.html',
+          dest: dist
+        }
+      ],
       verbose: true
     }),
     json(),
@@ -42,7 +55,7 @@ export default appNames.map((appName) => ({
     svelte({
       css: (css) => {
         if (css.code) {
-          css.write(`dist/${appName}.css`, false)
+          css.write(`${dist}/${appName}.css`, false)
         }
       },
       preprocess: {
