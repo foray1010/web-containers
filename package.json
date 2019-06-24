@@ -35,7 +35,7 @@
     "cross-env": "5.2.0",
     "eslint": "5.16.0",
     "eslint-config-foray1010": "7.2.0",
-    "fast-glob": "3.0.1",
+    "fast-glob": "3.0.2",
     "husky": "2.4.1",
     "import-sort-cli": "6.0.0",
     "import-sort-parser-babylon": "6.0.0",
