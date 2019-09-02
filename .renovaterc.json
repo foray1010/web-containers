@@ -1,18 +1,32 @@
 {
-  "extends": ["config:base", ":semanticCommitTypeAll(chore)"],
+  "extends": ["config:base", ":automergeMinor"],
   "timezone": "Asia/Hong_Kong",
-  "schedule": ["after 2:00am and before 6:00am"],
+  "schedule": ["after 2am and before 5am"],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["after 5am and before 6am on Monday"]
+  },
   "node": {
     "supportPolicy": ["lts_active"]
   },
   "packageRules": [
     {
+      "packagePatterns": ["^eslint"],
+      "groupName": "eslint packages"
+    },
+    {
       "packagePatterns": ["^import-sort-"],
       "groupName": "import-sort monorepo"
+    },
+    {
+      "packagePatterns": ["^stylelint"],
+      "groupName": "stylelint packages"
     }
   ],
   "semanticCommits": true,
+  "semanticCommitType": "chore",
   "prCreation": "not-pending",
+  "stabilityDays": 3,
   "assignees": ["foray1010", "nickccm1122"],
   "reviewers": ["foray1010", "nickccm1122"]
 }
