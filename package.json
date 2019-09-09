@@ -19,13 +19,13 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@babel/polyfill": "7.4.4",
+    "@babel/polyfill": "7.6.0",
     "escape-string-regexp": "2.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.5.5",
-    "@babel/preset-env": "7.5.5",
-    "@babel/preset-typescript": "7.3.3",
+    "@babel/core": "7.6.0",
+    "@babel/preset-env": "7.6.0",
+    "@babel/preset-typescript": "7.6.0",
     "@commitlint/cli": "8.1.0",
     "@commitlint/config-conventional": "8.1.0",
     "@types/firefox-webext-browser": "67.0.2",
