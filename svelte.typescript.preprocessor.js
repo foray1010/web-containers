@@ -26,8 +26,7 @@ export default async ({content, filename: filePath}) => {
   const tmpFilePath = renameBaseName({filePath, prefix: '.svelte-typescript.', ext: '.ts'})
   await writeFileAsync(tmpFilePath, content)
 
-  const typeDefinitionFilePaths = (await fg(tsconfig.include || [])).filter((x) =>
-    /\.d\.ts$/.test(x))
+  const typeDefinitionFilePaths = (await fg(tsconfig.include || [])).filter(x => /\.d\.ts$/.test(x))
 
   const compilerOptions = ts.convertCompilerOptionsFromJson(
     tsconfig.compilerOptions || {},
@@ -43,7 +42,7 @@ export default async ({content, filename: filePath}) => {
   const emitResult = program.emit()
 
   const allDiagnostics = ts.getPreEmitDiagnostics(program).concat(emitResult.diagnostics)
-  allDiagnostics.forEach((diagnostic) => {
+  allDiagnostics.forEach(diagnostic => {
     const fileName = path.relative(process.cwd(), filePath)
     console.error(
       chalk.red(`${fileName}: ${ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n')}`)

@@ -29,9 +29,9 @@ async function onBeforeRequestListener(
         const [targetContextualIdentity] = await browser.contextualIdentities.query({
           name: preset.name
         })
-        const targetCookieStoreId = targetContextualIdentity ?
-          targetContextualIdentity.cookieStoreId :
-          undefined
+        const targetCookieStoreId = targetContextualIdentity
+          ? targetContextualIdentity.cookieStoreId
+          : undefined
         console.debug(`target cookieStoreId: ${targetCookieStoreId} for ${preset.name}`)
         if (!targetCookieStoreId) {
           return {
@@ -43,7 +43,7 @@ async function onBeforeRequestListener(
         const isContained = currentCookieStoreId === targetCookieStoreId
         const isMatchedDomain = preset.domains
           .map(convertDomainToRegExp)
-          .some((regexp) => regexp.test(new URL(details.url).hostname))
+          .some(regexp => regexp.test(new URL(details.url).hostname))
 
         if (isMatchedDomain && !isContained) {
           await reopenTabInContainer(details.tabId, targetCookieStoreId, details.url)
@@ -68,12 +68,12 @@ async function onBeforeRequestListener(
     )
   )
 
-  if (responses.every((response) => response.shouldReset)) {
+  if (responses.every(response => response.shouldReset)) {
     await reopenTabInContainer(details.tabId, DEFAULT_FIREFOX_COOKIE_STORE_ID, details.url)
   }
 
   return {
-    cancel: responses.some((response) => response.cancel)
+    cancel: responses.some(response => response.cancel)
   }
 }
 
@@ -84,7 +84,7 @@ async function init(): Promise<void> {
     await configurationService.saveContainerConfigs(presets)
 
     await Promise.all(
-      presets.map(async (preset) => {
+      presets.map(async preset => {
         const cookieStoreId = await setupContainer({
           name: preset.name,
           color: preset.color,
@@ -107,4 +107,4 @@ async function init(): Promise<void> {
   )
 }
 
-init().catch((err) => console.error(err))
+init().catch(err => console.error(err))

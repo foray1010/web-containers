@@ -1,5 +1,4 @@
 extends:
-  - 'eslint-config-foray1010/typescript'
-  - 'eslint-config-foray1010/rules/frontend'
-globals:
-  browser: false
+  - '@foray1010/eslint-config'
+parserOptions:
+  sourceType: 'module'

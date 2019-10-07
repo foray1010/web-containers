@@ -16,7 +16,7 @@ const appNames = ['background', 'options', 'popup']
 const dist = 'dist'
 const isProd = process.env.NODE_ENV === 'production'
 
-export default appNames.map((appName) => ({
+export default appNames.map(appName => ({
   input: `src/${appName}.ts`,
   output: {
     file: `${dist}/${appName}.js`,
@@ -53,7 +53,7 @@ export default appNames.map((appName) => ({
       extensions: ['.ts', '.mjs', '.js', '.json']
     }),
     svelte({
-      css: (css) => {
+      css: css => {
         if (css.code) {
           css.write(`${dist}/${appName}.css`, false)
         }
