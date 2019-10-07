@@ -45,14 +45,14 @@ async function removeContainerCookiesByDomains(
 
   const domainRegExps = domains.map(convertDomainToRegExp)
 
-  const matchDomainCookies = allCookies.filter((cookie) => {
-    return domainRegExps.some((regexp) => {
+  const matchDomainCookies = allCookies.filter(cookie => {
+    return domainRegExps.some(regexp => {
       return regexp.test(cookie.domain)
     })
   })
 
   await Promise.all(
-    matchDomainCookies.map((cookie) => {
+    matchDomainCookies.map(cookie => {
       return browser.cookies.remove({
         name: cookie.name,
         url: cookieDomainToUrl(cookie.domain),
@@ -74,8 +74,8 @@ async function clearDomainCookies(
   const containers = await browser.contextualIdentities.query({})
 
   const cookieStoreToBeRemoved = containers
-    .filter((container) => container.cookieStoreId !== cookieStoreId)
-    .map((container) => container.cookieStoreId)
+    .filter(container => container.cookieStoreId !== cookieStoreId)
+    .map(container => container.cookieStoreId)
     .concat(DEFAULT_FIREFOX_COOKIE_STORE_ID)
 
   const removeAllDomainCookiesAsync = cookieStoreToBeRemoved.reduce<Array<Promise<void>>>(

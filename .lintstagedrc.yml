@@ -1,16 +1,12 @@
 '.babelrc':
-  - 'prettier-eslint --parser json --write'
+  - 'prettier --parser json --write'
   - 'git add'
-'*.html':
-  - 'prettier-eslint --write'
-  - 'eslint --fix'
-  - 'git add'
-'*.{json,md,yaml,yml}':
-  - 'prettier-eslint --write'
+'*.{html,json,md,yaml,yml}':
+  - 'prettier --write'
   - 'git add'
 '*.{js,ts}':
   - 'import-sort --write'
-  - 'prettier-eslint --write'
+  - 'prettier --write'
   - 'eslint --fix'
   - 'jest --bail --findRelatedTests --config .jestrc.json'
   - 'git add'
