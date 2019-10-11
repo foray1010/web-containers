@@ -1,4 +1,4 @@
-import {DEFAULT_FIREFOX_COOKIE_STORE_ID} from '../constants/container'
+import { DEFAULT_FIREFOX_COOKIE_STORE_ID } from '../constants/container'
 import convertDomainToRegExp from '../utils/convertDomainToRegExp'
 
 const DEFAULT_CONTAINER_COLOR = 'blue'
@@ -12,9 +12,13 @@ async function setupContainer(option: {
   color?: string
   icon?: string
 }): Promise<string> {
-  const {name, color = DEFAULT_CONTAINER_COLOR, icon = DEFAULT_CONTAINER_ICON} = option
+  const {
+    name,
+    color = DEFAULT_CONTAINER_COLOR,
+    icon = DEFAULT_CONTAINER_ICON,
+  } = option
   const contexts = await browser.contextualIdentities.query({
-    name
+    name,
   })
 
   if (contexts.length > 0) {
@@ -23,7 +27,7 @@ async function setupContainer(option: {
     const context = await browser.contextualIdentities.create({
       color,
       icon,
-      name
+      name,
     })
 
     return context.cookieStoreId
@@ -37,10 +41,10 @@ function cookieDomainToUrl(domain: string): string {
 
 async function removeContainerCookiesByDomains(
   storeId: string,
-  domains: Array<string>
+  domains: Array<string>,
 ): Promise<void> {
   const allCookies = await browser.cookies.getAll({
-    storeId
+    storeId,
   })
 
   const domainRegExps = domains.map(convertDomainToRegExp)
@@ -56,9 +60,9 @@ async function removeContainerCookiesByDomains(
       return browser.cookies.remove({
         name: cookie.name,
         url: cookieDomainToUrl(cookie.domain),
-        storeId
+        storeId,
       })
-    })
+    }),
   )
 }
 
@@ -69,7 +73,7 @@ async function clearDomainCookies(
   cookieStoreId: string,
   containerOption: {
     domains: Array<string>
-  }
+  },
 ): Promise<void> {
   const containers = await browser.contextualIdentities.query({})
 
@@ -78,14 +82,16 @@ async function clearDomainCookies(
     .map(container => container.cookieStoreId)
     .concat(DEFAULT_FIREFOX_COOKIE_STORE_ID)
 
-  const removeAllDomainCookiesAsync = cookieStoreToBeRemoved.reduce<Array<Promise<void>>>(
-    (acc, storeId) => {
-      return [...acc, removeContainerCookiesByDomains(storeId, containerOption.domains)]
-    },
-    []
-  )
+  const removeAllDomainCookiesAsync = cookieStoreToBeRemoved.reduce<
+    Array<Promise<void>>
+  >((acc, storeId) => {
+    return [
+      ...acc,
+      removeContainerCookiesByDomains(storeId, containerOption.domains),
+    ]
+  }, [])
 
   await Promise.all(removeAllDomainCookiesAsync)
 }
 
-export {setupContainer, clearDomainCookies}
+export { setupContainer, clearDomainCookies }

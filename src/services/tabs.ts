@@ -1,7 +1,7 @@
 export const reopenTabInContainer = async (
   tabId: number,
   cookieStoreId: string,
-  overwriteUrl?: string
+  overwriteUrl?: string,
 ): Promise<void> => {
   const tab = await browser.tabs.get(tabId)
   console.debug('tab', tab)
@@ -14,7 +14,7 @@ export const reopenTabInContainer = async (
     cookieStoreId,
     index: tab.index,
     url,
-    windowId: tab.windowId
+    windowId: tab.windowId,
   })
 
   if (tab.id !== undefined) {

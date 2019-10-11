@@ -29,6 +29,7 @@
     "@commitlint/cli": "8.2.0",
     "@commitlint/config-conventional": "8.2.0",
     "@foray1010/eslint-config": "1.2.3",
+    "@foray1010/prettierrc": "1.0.1",
     "@types/babel__core": "7.1.3",
     "@types/eslint": "6.1.2",
     "@types/firefox-webext-browser": "67.0.2",

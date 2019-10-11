@@ -1,10 +1,13 @@
 declare class Svelte {
-  constructor(options: {target: Element; data?: any; store?: any})
+  constructor(options: { target: Element; data?: any; store?: any })
 
   get(name?: string): any
   set(data: any): void
 
-  on(eventName: string, callback?: (event?: any) => any): () => {cancel: () => any}
+  on(
+    eventName: string,
+    callback?: (event?: any) => any,
+  ): () => { cancel: () => any }
 
   fire(eventName: string, event?: any): void
 
@@ -12,8 +15,8 @@ declare class Svelte {
     name: string,
     //@ts-ignore
     callback: (newValue?, oldValue?) => any,
-    options?: {init?: boolean; defer?: boolean}
-  ): () => {cancel: () => any}
+    options?: { init?: boolean; defer?: boolean },
+  ): () => { cancel: () => any }
 
   oncreate(): void
 

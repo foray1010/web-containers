@@ -8,7 +8,7 @@ export enum CONTAINER_COLORS {
   'orange',
   'red',
   'pink',
-  'purple'
+  'purple',
 }
 
 export enum CONTAINER_ICONS {
@@ -16,5 +16,5 @@ export enum CONTAINER_ICONS {
   'briefcase',
   'dollar',
   'cart',
-  'circle'
+  'circle',
 }

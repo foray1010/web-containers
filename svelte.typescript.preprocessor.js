@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import {promisify} from 'util'
+import { promisify } from 'util'
 
 import chalk from 'chalk'
 import fg from 'fast-glob'
@@ -11,41 +11,54 @@ import tsconfig from './tsconfig.json'
 const unlinkFileAsync = promisify(fs.unlink)
 const writeFileAsync = promisify(fs.writeFile)
 
-const renameBaseName = ({filePath, prefix, ext}) => {
+const renameBaseName = ({ filePath, prefix, ext }) => {
   const fileName = path.basename(filePath, path.extname(filePath))
   const dirName = path.dirname(filePath)
   const newFilePath = path.format({
     dir: dirName,
     name: prefix + fileName,
-    ext
+    ext,
   })
   return newFilePath
 }
 
-export default async ({content, filename: filePath}) => {
-  const tmpFilePath = renameBaseName({filePath, prefix: '.svelte-typescript.', ext: '.ts'})
+export default async ({ content, filename: filePath }) => {
+  const tmpFilePath = renameBaseName({
+    filePath,
+    prefix: '.svelte-typescript.',
+    ext: '.ts',
+  })
   await writeFileAsync(tmpFilePath, content)
 
-  const typeDefinitionFilePaths = (await fg(tsconfig.include || [])).filter(x => /\.d\.ts$/.test(x))
+  const typeDefinitionFilePaths = (await fg(tsconfig.include || [])).filter(x =>
+    /\.d\.ts$/.test(x),
+  )
 
   const compilerOptions = ts.convertCompilerOptionsFromJson(
     tsconfig.compilerOptions || {},
-    process.cwd()
+    process.cwd(),
   )
 
   const program = ts.createProgram([tmpFilePath, ...typeDefinitionFilePaths], {
     ...compilerOptions.options,
     // not sure why this setting need to be disabled
     isolatedModules: false,
-    noEmit: true
+    noEmit: true,
   })
   const emitResult = program.emit()
 
-  const allDiagnostics = ts.getPreEmitDiagnostics(program).concat(emitResult.diagnostics)
+  const allDiagnostics = ts
+    .getPreEmitDiagnostics(program)
+    .concat(emitResult.diagnostics)
   allDiagnostics.forEach(diagnostic => {
     const fileName = path.relative(process.cwd(), filePath)
     console.error(
-      chalk.red(`${fileName}: ${ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n')}`)
+      chalk.red(
+        `${fileName}: ${ts.flattenDiagnosticMessageText(
+          diagnostic.messageText,
+          '\n',
+        )}`,
+      ),
     )
   })
 
@@ -57,6 +70,6 @@ export default async ({content, filename: filePath}) => {
   }
 
   return {
-    code: content
+    code: content,
   }
 }

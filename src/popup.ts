@@ -8,10 +8,10 @@ testImport()
 const app = new App({
   target: document.getElementById('root') as Element,
   data: {
-    name: 'world'
-  }
+    name: 'world',
+  },
 })
 
 app.set({
-  name: 'everybody'
+  name: 'everybody',
 })

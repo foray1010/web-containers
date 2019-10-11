@@ -7,7 +7,7 @@ import json from 'rollup-plugin-json'
 import resolve from 'rollup-plugin-node-resolve'
 import replace from 'rollup-plugin-replace'
 import svelte from 'rollup-plugin-svelte'
-import {terser} from 'rollup-plugin-terser'
+import { terser } from 'rollup-plugin-terser'
 
 import svelteBabelPreprocessor from './svelte.babel.preprocessor'
 import svelteTypescriptPreprocessor from './svelte.typescript.preprocessor'
@@ -21,36 +21,36 @@ export default appNames.map(appName => ({
   output: {
     file: `${dist}/${appName}.js`,
     format: 'iife',
-    sourcemap: isProd ? false : 'inline'
+    sourcemap: isProd ? false : 'inline',
   },
   plugins: [
     babel({
-      extensions: ['.ts', '.mjs', '.js']
+      extensions: ['.ts', '.mjs', '.js'],
     }),
     commonjs(),
     copy({
       targets: [
         {
           src: 'src/manifest.json',
-          dest: dist
+          dest: dist,
         },
         {
           src: 'src/options.html',
-          dest: dist
+          dest: dist,
         },
         {
           src: 'src/popup.html',
-          dest: dist
-        }
+          dest: dist,
+        },
       ],
-      verbose: true
+      verbose: true,
     }),
     json(),
     replace({
-      'process.env.NODE_ENV': process.env.NODE_ENV
+      'process.env.NODE_ENV': process.env.NODE_ENV,
     }),
     resolve({
-      extensions: ['.ts', '.mjs', '.js', '.json']
+      extensions: ['.ts', '.mjs', '.js', '.json'],
     }),
     svelte({
       css: css => {
@@ -63,15 +63,15 @@ export default appNames.map(appName => ({
           await svelteTypescriptPreprocessor(...args)
           return svelteBabelPreprocessor(...args)
         },
-        style: async ({content}) => {
+        style: async ({ content }) => {
           const result = await postcss([postcssPresetEnv()]).process(content)
           return {
             code: result.css,
-            map: result.map
+            map: result.map,
           }
-        }
-      }
+        },
+      },
     }),
-    isProd && terser()
-  ]
+    isProd && terser(),
+  ],
 }))
