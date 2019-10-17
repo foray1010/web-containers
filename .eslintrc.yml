@@ -1,4 +1,9 @@
 extends:
   - '@foray1010/eslint-config'
-parserOptions:
-  sourceType: 'module'
+overrides:
+  -
+    files:
+      - 'rollup.config.js'
+      - 'svelte.*.preprocessor.js'
+    parserOptions:
+      sourceType: 'module'
