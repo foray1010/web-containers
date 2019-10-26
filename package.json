@@ -13,7 +13,7 @@
     "ci": "run-p build:prod lint:js lint:md test typecheck",
     "predev": "npm run build:dev",
     "dev": "run-p --print-label --print-name build:dev:watch:dirty start:firefox",
-    "eslint": "eslint --ext=js,mjs,ts,tsx --ignore-path=node_modules/@foray1010/eslint-config/eslintignore",
+    "eslint": "eslint --ext=cjs,js,mjs,ts,tsx --ignore-path=node_modules/@foray1010/eslint-config/eslintignore",
     "lint:js": "npm run eslint .",
     "lint:md": "npm run remark .",
     "prettier": "prettier --ignore-path=node_modules/@foray1010/prettier-config/prettierignore",
