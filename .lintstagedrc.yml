@@ -1,6 +1,3 @@
-'.babelrc':
-  - 'npm run prettier --parser json --write'
-  - 'git add'
 '*.{html,json,yaml,yml}':
   - 'npm run prettier --write'
   - 'git add'
@@ -13,4 +10,11 @@
 '*.md':
   - 'npm run prettier --write'
   - 'npm run remark'
+  - 'git add'
+'.babelrc':
+  - 'npm run prettier --parser'
+  - 'git add'
+'package.json':
+  - 'sort-package-json'
+  - 'npm run prettier --write'
   - 'git add'

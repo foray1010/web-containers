@@ -2,13 +2,9 @@
   "name": "web-containers",
   "version": "0.0.0",
   "license": "MIT",
-  "engines": {
-    "node": ">=8.9",
-    "npm": ">=6.6"
-  },
   "scripts": {
-    "build:dev:watch:dirty": "cross-env NODE_ENV=development rollup -c -w",
     "build:dev": "shx rm -rf dist/ && cross-env NODE_ENV=development rollup -c",
+    "build:dev:watch:dirty": "cross-env NODE_ENV=development rollup -c -w",
     "build:prod": "shx rm -rf dist/ && cross-env NODE_ENV=production rollup -c",
     "ci": "run-p build:prod lint:js lint:md test typecheck",
     "predev": "npm run build:dev",
@@ -66,8 +62,13 @@
     "rollup-plugin-svelte": "5.1.0",
     "rollup-plugin-terser": "5.1.2",
     "shx": "0.3.2",
+    "sort-package-json": "1.22.1",
     "svelte": "2.16.1",
     "typescript": "3.6.4",
     "web-ext": "3.2.0"
+  },
+  "engines": {
+    "node": ">=8.9",
+    "npm": ">=6.6"
   }
 }
