@@ -65,7 +65,7 @@
     "sort-package-json": "1.23.1",
     "svelte": "2.16.1",
     "typescript": "3.7.2",
-    "web-ext": "3.2.0"
+    "web-ext": "3.2.1"
   },
   "engines": {
     "node": ">=8.9",
