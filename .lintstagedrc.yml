@@ -11,9 +11,6 @@
   - 'npm run prettier --write'
   - 'npm run remark'
   - 'git add'
-'.babelrc':
-  - 'npm run prettier --parser'
-  - 'git add'
 'package.json':
   - 'sort-package-json'
   - 'npm run prettier --write'
