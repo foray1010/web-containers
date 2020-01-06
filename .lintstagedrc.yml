@@ -2,7 +2,6 @@
   - 'npm run prettier -- --write'
   - 'git add'
 '*.{js,ts}':
-  - 'import-sort --write'
   - 'npm run prettier -- --write'
   - 'npm run eslint -- --fix'
   - 'jest --bail --findRelatedTests --config .jestrc.json'

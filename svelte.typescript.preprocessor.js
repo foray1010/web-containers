@@ -1,10 +1,9 @@
-import fs from 'fs'
-import path from 'path'
-import { promisify } from 'util'
-
 import chalk from 'chalk'
 import fg from 'fast-glob'
+import fs from 'fs'
+import path from 'path'
 import * as ts from 'typescript'
+import { promisify } from 'util'
 
 import tsconfig from './tsconfig.json'
 
