@@ -59,7 +59,7 @@
     "shx": "0.3.2",
     "sort-package-json": "1.39.0",
     "svelte": "2.16.1",
-    "typescript": "3.7.4",
+    "typescript": "3.7.5",
     "web-ext": "4.0.0"
   },
   "engines": {
