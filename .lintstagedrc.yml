@@ -1,16 +1,12 @@
 '*.{html,json,yaml,yml}':
   - 'npm run prettier -- --write'
-  - 'git add'
 '*.{js,ts}':
   - 'npm run prettier -- --write'
   - 'npm run eslint -- --fix'
   - 'jest --bail --findRelatedTests --config .jestrc.json'
-  - 'git add'
 '*.md':
   - 'npm run prettier -- --write'
   - 'npm run remark'
-  - 'git add'
 'package.json':
   - 'sort-package-json'
   - 'npm run prettier -- --write'
-  - 'git add'
