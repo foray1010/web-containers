@@ -38,23 +38,23 @@
 
   export default {
     components: {
-      MyRule
+      MyRule,
     },
     data() {
       return {
         myRules: [],
-        presets: []
+        presets: [],
       }
     },
     methods: {
       submit(this: Svelte, event: Event) {
         event.preventDefault()
 
-        const {myRules} = this.get()
+        const { myRules } = this.get()
 
         saveContainerConfigs(myRules)
-      }
-    }
+      },
+    },
   }
 </script>
 
