@@ -29,9 +29,9 @@ export default async ({ content, filename: filePath }) => {
   })
   await writeFileAsync(tmpFilePath, content)
 
-  const typeDefinitionFilePaths = (await fg(tsconfig.include || [])).filter(x =>
-    /\.d\.ts$/.test(x),
-  )
+  const typeDefinitionFilePaths = (
+    await fg(tsconfig.include || [])
+  ).filter((x) => /\.d\.ts$/.test(x))
 
   const compilerOptions = ts.convertCompilerOptionsFromJson(
     tsconfig.compilerOptions || {},
@@ -49,7 +49,7 @@ export default async ({ content, filename: filePath }) => {
   const allDiagnostics = ts
     .getPreEmitDiagnostics(program)
     .concat(emitResult.diagnostics)
-  allDiagnostics.forEach(diagnostic => {
+  allDiagnostics.forEach((diagnostic) => {
     const fileName = path.relative(process.cwd(), filePath)
     console.error(
       chalk.red(
