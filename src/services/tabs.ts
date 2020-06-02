@@ -7,7 +7,7 @@ export const reopenTabInContainer = async (
   console.debug('tab', tab)
 
   const url = overwriteUrl || tab.url
-  console.debug(`reopen ${url} in ${cookieStoreId}`)
+  console.debug(`reopen ${url || 'undefined'} in ${cookieStoreId}`)
 
   await browser.tabs.create({
     active: tab.active,
