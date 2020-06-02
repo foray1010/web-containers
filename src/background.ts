@@ -20,7 +20,7 @@ async function onBeforeRequestListener(
   const { cookieStoreId: currentCookieStoreId } = await browser.tabs.get(
     details.tabId,
   )
-  console.debug(`current cookieStoreId: ${currentCookieStoreId}`)
+  console.debug(`current cookieStoreId: ${currentCookieStoreId || 'undefined'}`)
 
   const responses = await Promise.all(
     presets.map(
@@ -39,7 +39,9 @@ async function onBeforeRequestListener(
           ? targetContextualIdentity.cookieStoreId
           : undefined
         console.debug(
-          `target cookieStoreId: ${targetCookieStoreId} for ${preset.name}`,
+          `target cookieStoreId: ${targetCookieStoreId || 'undefined'} for ${
+            preset.name
+          }`,
         )
         if (!targetCookieStoreId) {
           return {
