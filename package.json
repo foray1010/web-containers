@@ -60,7 +60,7 @@
     "sort-package-json": "1.44.0",
     "svelte": "2.16.1",
     "typescript": "3.9.5",
-    "web-ext": "4.2.0"
+    "web-ext": "4.3.0"
   },
   "engines": {
     "node": ">=12.13",
