@@ -19,13 +19,13 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@babel/polyfill": "7.10.1",
+    "@babel/polyfill": "7.10.4",
     "escape-string-regexp": "4.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.10.3",
-    "@babel/preset-env": "7.10.3",
-    "@babel/preset-typescript": "7.10.1",
+    "@babel/core": "7.10.4",
+    "@babel/preset-env": "7.10.4",
+    "@babel/preset-typescript": "7.10.4",
     "@commitlint/cli": "9.0.1",
     "@commitlint/config-conventional": "9.0.1",
     "@foray1010/eslint-config": "3.4.0",
