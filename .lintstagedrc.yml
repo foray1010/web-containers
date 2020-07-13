@@ -1,5 +1,4 @@
-'*.{html,json,yaml,yml}':
-  - 'npm run prettier -- --write'
+'*.{html,json,yaml,yml}': 'npm run prettier -- --write'
 '*.{js,ts}':
   - 'npm run prettier -- --write'
   - 'npm run eslint -- --fix'
@@ -7,6 +6,3 @@
 '*.md':
   - 'npm run prettier -- --write'
   - 'npm run remark'
-'package.json':
-  - 'sort-package-json'
-  - 'npm run prettier -- --write'
