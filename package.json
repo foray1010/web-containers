@@ -32,7 +32,7 @@
     "@foray1010/prettier-config": "4.1.0",
     "@foray1010/remark-preset": "3.2.0",
     "@types/firefox-webext-browser": "78.0.1",
-    "@types/jest": "26.0.9",
+    "@types/jest": "26.0.10",
     "@types/rollup-plugin-json": "3.0.2",
     "babel-plugin-transform-remove-console": "6.9.4",
     "chalk": "4.1.0",
