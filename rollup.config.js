@@ -16,7 +16,7 @@ const appNames = ['background', 'options', 'popup']
 const dist = 'dist'
 const isProd = process.env.NODE_ENV === 'production'
 
-export default appNames.map((appName) => ({
+const config = appNames.map((appName) => ({
   input: `src/${appName}.ts`,
   output: {
     file: `${dist}/${appName}.js`,
@@ -75,3 +75,4 @@ export default appNames.map((appName) => ({
     isProd && terser(),
   ],
 }))
+export default config

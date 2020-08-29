@@ -1,3 +1,5 @@
-export default (enums: { [k: string]: any }): Array<string> => {
+export default function valuesFromEnum(enums: {
+  [k: string]: any
+}): Array<string> {
   return Object.keys(enums).filter((k) => typeof enums[k] === 'number')
 }
