@@ -21,7 +21,10 @@ const renameBaseName = ({ filePath, prefix, ext }) => {
   return newFilePath
 }
 
-export default async ({ content, filename: filePath }) => {
+export default async function svelteTypescriptPreprocessor({
+  content,
+  filename: filePath,
+}) {
   const tmpFilePath = renameBaseName({
     filePath,
     prefix: '.svelte-typescript.',
