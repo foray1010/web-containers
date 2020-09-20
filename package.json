@@ -43,7 +43,7 @@
     "jest": "26.4.2",
     "lint-staged": "10.4.0",
     "npm-run-all": "4.1.5",
-    "postcss": "7.0.32",
+    "postcss": "7.0.34",
     "postcss-preset-env": "6.7.0",
     "prettier": "2.1.2",
     "remark-cli": "8.0.1",
