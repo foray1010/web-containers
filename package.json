@@ -31,7 +31,7 @@
     "@foray1010/eslint-config": "4.1.1",
     "@foray1010/prettier-config": "4.1.1",
     "@foray1010/remark-preset": "3.4.0",
-    "@types/firefox-webext-browser": "78.0.1",
+    "@types/firefox-webext-browser": "82.0.0",
     "@types/jest": "26.0.15",
     "@types/rollup-plugin-json": "3.0.2",
     "babel-plugin-transform-remove-console": "6.9.4",
