@@ -4,9 +4,7 @@ import convertDomainToRegExp from '../utils/convertDomainToRegExp'
 const DEFAULT_CONTAINER_COLOR = 'blue'
 const DEFAULT_CONTAINER_ICON = 'fingerprint'
 
-/**
- * Upsert a container and retrieve the cookieStoreId
- */
+// Upsert a container and retrieve the cookieStoreId
 async function setupContainer(option: {
   name: string
   color?: string
@@ -66,9 +64,7 @@ async function removeContainerCookiesByDomains(
   )
 }
 
-/**
- * Remove domain cookies outside of designated container
- */
+// Remove domain cookies outside of designated container
 async function clearDomainCookies(
   cookieStoreId: string,
   containerOption: {
@@ -94,4 +90,4 @@ async function clearDomainCookies(
   await Promise.all(removeAllDomainCookiesAsync)
 }
 
-export { setupContainer, clearDomainCookies }
+export { clearDomainCookies, setupContainer }
