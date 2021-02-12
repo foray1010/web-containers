@@ -1,6 +1,7 @@
 {
   "name": "web-containers",
   "version": "0.0.0",
+  "private": true,
   "license": "MIT",
   "scripts": {
     "build:dev": "shx rm -rf dist/ && cross-env NODE_ENV=development rollup -c",
@@ -10,6 +11,7 @@
     "predev": "npm run build:dev",
     "dev": "run-p --print-label --print-name build:dev:watch:dirty start:firefox",
     "eslint": "eslint --ext=cjs,js,mjs,ts,tsx",
+    "postinstall": "husky install",
     "lint:js": "npm run eslint .",
     "lint:md": "npm run remark .",
     "prettier": "prettier --ignore-path=node_modules/@foray1010/prettier-config/prettierignore",
@@ -39,7 +41,7 @@
     "cross-env": "7.0.3",
     "eslint": "7.19.0",
     "fast-glob": "3.2.5",
-    "husky": "4.3.8",
+    "husky": "5.0.9",
     "jest": "26.6.3",
     "lint-staged": "10.5.4",
     "npm-run-all": "4.1.5",
@@ -63,6 +65,6 @@
   },
   "engines": {
     "node": ">=12.13",
-    "npm": ">=6.6"
+    "npm": ">=7"
   }
 }
