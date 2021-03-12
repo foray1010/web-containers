@@ -53,17 +53,17 @@ const config = appNames.map((appName) => ({
       extensions: ['.ts', '.mjs', '.js', '.json'],
     }),
     svelte({
-      css: (css) => {
+      css(css) {
         if (css.code) {
           css.write(`${dist}/${appName}.css`, false)
         }
       },
       preprocess: {
-        script: async (...args) => {
+        async script(...args) {
           await svelteTypescriptPreprocessor(...args)
           return svelteBabelPreprocessor(...args)
         },
-        style: async ({ content }) => {
+        async style({ content }) {
           const result = await postcss([postcssPresetEnv()]).process(content)
           return {
             code: result.css,
