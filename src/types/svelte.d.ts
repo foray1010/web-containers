@@ -1,30 +1,29 @@
 declare class Svelte {
   constructor(options: { target: Element; data?: any; store?: any })
 
-  get(name?: string): any
-  set(data: any): void
+  public get(name?: string): any
+  public set(data: any): void
 
-  on(
+  public on(
     eventName: string,
     callback?: (event?: any) => any,
   ): () => { cancel: () => any }
 
-  fire(eventName: string, event?: any): void
+  public fire(eventName: string, event?: any): void
 
-  observe(
+  public observe(
     name: string,
-    //@ts-ignore
-    callback: (newValue?, oldValue?) => any,
+    callback: (newValue?: any, oldValue?: any) => any,
     options?: { init?: boolean; defer?: boolean },
   ): () => { cancel: () => any }
 
-  oncreate(): void
+  public oncreate(): void
 
-  ondestroy(): void
+  public ondestroy(): void
 
-  destroy(): void
+  public destroy(): void
 
-  refs: RefCollection
+  public refs: RefCollection
 }
 
 interface RefCollection {

@@ -7,7 +7,7 @@
     "build:dev": "shx rm -rf dist/ && cross-env NODE_ENV=development rollup -c",
     "build:dev:watch:dirty": "cross-env NODE_ENV=development rollup -c -w",
     "build:prod": "shx rm -rf dist/ && cross-env NODE_ENV=production rollup -c",
-    "ci": "run-p build:prod lint:js lint:md test typecheck",
+    "ci": "run-p build:prod lint:js lint:md test type:check",
     "predev": "npm run build:dev",
     "dev": "run-p --print-label --print-name build:dev:watch:dirty start:firefox",
     "eslint": "eslint --ext=cjs,js,mjs,ts,tsx",
@@ -18,7 +18,7 @@
     "remark": "remark --frail --ignore-path=node_modules/@foray1010/remark-preset/remarkignore --ignore-path-resolve-from=cwd",
     "start:firefox": "web-ext run --source-dir dist/",
     "test": "jest --config .jestrc.json",
-    "typecheck": "tsc"
+    "type:check": "tsc"
   },
   "dependencies": {
     "@babel/polyfill": "7.12.1",

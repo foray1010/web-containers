@@ -21,7 +21,7 @@ async function getSyncConfigs(): Promise<SyncConfig> {
     const syncConfigs = (await browser.storage.sync.get()) as SyncConfig
 
     return syncConfigs
-  } catch (err) {
+  } catch (err: unknown) {
     console.error('Failed to get container config', err)
     throw err
   }
@@ -40,7 +40,7 @@ async function saveContainerConfigs(
     await browser.storage.sync.set({
       [CONTAINER_CONFIGS_FIELD_KEY]: config,
     })
-  } catch (err) {
+  } catch (err: unknown) {
     console.error('Failed to save container config', err)
     throw err
   }
