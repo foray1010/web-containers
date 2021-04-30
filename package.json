@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "7.12.1",
-    "escape-string-regexp": "4.0.0"
+    "escape-string-regexp": "5.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.13.16",
